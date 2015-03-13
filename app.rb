@@ -1,7 +1,7 @@
 require 'sinatra'
 require 'dalli'
 
-%w[SERVERS USERNAME PASSWORD].each { |k| ENV["MEMCACHED_#{k}"] ||= ENV["MEMCACHIER_#{k}"] }
+%w[SERVERS USERNAME PASSWORD].each { |k| ENV["MEMCACHE_#{k}"] ||= ENV["MEMCACHIER_#{k}"] }
 STORE = Dalli::Client.new(nil, compress: true)
 
 def lock(key)
