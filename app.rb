@@ -17,6 +17,10 @@ get "/" do
   "Welcome to amend\nsource is at https://github.com/grosser/amend\njust `curl -X POST -d whatever /amend/some_random_key` as much as you want\nand get it back with curl /amend/some_random_key\nup to ~1MB and as long as the cache holds ..."
 end
 
+get "/favicon.ico" do
+  halt 404
+end
+
 post "/amend/:key" do
   key = params.fetch("key")
   data = request.body.read
