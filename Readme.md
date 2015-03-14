@@ -12,6 +12,12 @@ curl https://amend.herokuapp.com/amend/some_random_key
 # => bar
 ```
 
+for bigger things, write them to a file and upload the file content:
+
+```
+curl -X POST -d @data.log https://amend.herokuapp.com/amend/some_random_key
+```
+
 up to ~1MB and as long as the cache holds ...
 
 Author
