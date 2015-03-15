@@ -43,16 +43,17 @@ task :default do
     raise "Server fetch failed: #{result}" unless result.strip == "000111222"
 
     # upload a file
+    data = "xxxx\nyyyy\nzzzz"
     Tempfile.open("amend-test") do |f|
-      f.write "xxxx"
+      f.write data
       f.close
-      result = `curl --silent -X POST '127.0.0.1:3000/amend/#{key}f' --data @#{f.path}`
+      result = `curl --silent -X POST '127.0.0.1:3000/amend/#{key}f' --data-binary @#{f.path}`
       raise "Server amend #{i} failed: #{result}" unless result.include?("Amended key #{key}")
     end
 
     # download the file
     result = `curl --silent '127.0.0.1:3000/amend/#{key}f'`
-    raise "Server fetch failed: #{result}" unless result.strip == "xxxx"
+    raise "Server fetch failed: #{result}" unless result.strip == data
   ensure
     (child_pids(pid) + [pid]).each { |pid| Process.kill(:TERM, pid) }
   end
