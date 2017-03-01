@@ -6,6 +6,8 @@ if token = ENV["ROLLBAR"]
     config.disable_monkey_patch = true
     config.access_token = token
     config.exception_level_filters = { 'Sinatra::NotFound' => 'ignore' }
+    config.code_version = ENV['HEROKU_SLUG_COMMIT'] # heroku labs:enable runtime-dyno-metadata
+    config.environment = ENV["RACK_ENV"]
   end
 
   require 'rollbar/middleware/sinatra'
