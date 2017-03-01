@@ -18,7 +18,7 @@ for bigger things, write them to a file and upload the file content:
 curl -X POST --data-binary @data.log https://amend.herokuapp.com/amend/some_random_key
 ```
 
-up to ~1MB and as long as the cache holds ...
+up to ~1MB and as long as the cache holds ... for infinite cache use https://github.com/anamartinez/large_object_store
 
 Author
 ======
