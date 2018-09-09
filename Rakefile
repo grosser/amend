@@ -54,6 +54,7 @@ task :default do
     # download the file
     result = `curl --silent '127.0.0.1:3000/amend/#{key}f'`
     raise "Server fetch failed: #{result}" unless result.strip == data
+    puts "Test successful!"
   ensure
     (child_pids(pid) + [pid]).each { |pid| Process.kill(:TERM, pid) }
   end
