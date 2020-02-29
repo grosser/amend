@@ -6,7 +6,7 @@ GEM
     eventmachine (1.0.4)
     multi_json (1.12.1)
     rack (1.6.13)
-    rack-protection (1.5.3)
+    rack-protection (1.5.5)
       rack
     rake (12.3.3)
     rollbar (2.14.0)
