@@ -5,7 +5,7 @@ GEM
     dalli (2.7.2)
     eventmachine (1.0.4)
     multi_json (1.12.1)
-    rack (1.6.0)
+    rack (1.6.13)
     rack-protection (1.5.3)
       rack
     rake (10.0.3)
