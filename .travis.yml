@@ -1,4 +1,0 @@
-sudo: false
-cache: bundler
-services:
- - memcached
