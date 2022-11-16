@@ -1,4 +1,5 @@
-Data amend service ... for when yu have multiple servers that need to share something.
+Data amend service ... for when you have multiple servers that need to share something.
+Not race-condition safe, but it kinda works :)
 
 ```
 curl -X POST -d $'foo\n' https://amend.herokuapp.com/amend/some_random_key
