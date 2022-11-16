@@ -21,6 +21,11 @@ curl -X POST --data-binary @data.log https://amend.herokuapp.com/amend/some_rand
 
 up to ~1MB and as long as the cache holds ... for infinite cache use https://github.com/anamartinez/large_object_store
 
+# Testing
+
+Memcached: `rake test`
+Redis: `REDIS_SERVERS=redis://127.0.0.1:6379 rake`
+
 Author
 ======
 [Michael Grosser](http://grosser.it)<br/>

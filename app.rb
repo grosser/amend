@@ -1,8 +1,15 @@
 require 'sinatra'
-require 'dalli'
 
-%w[SERVERS USERNAME PASSWORD].each { |k| ENV["MEMCACHE_#{k}"] ||= ENV["MEMCACHIER_#{k}"] }
-STORE = Dalli::Client.new(nil, compress: true)
+
+STORE =
+  if (redis = ENV["REDIS_SERVERS"])
+    require 'redis'
+    Redis.new(url: redis)
+  else
+    require 'dalli'
+    %w[SERVERS USERNAME PASSWORD].each { |k| ENV["MEMCACHE_#{k}"] ||= ENV["MEMCACHIER_#{k}"] }
+    Dalli::Client.new(nil, compress: true)
+  end
 
 def lock(key)
   lock = "#{key}.lock"
@@ -24,10 +31,15 @@ end
 post "/amend/:key" do
   key = params.fetch("key")
   data = request.body.read
-  lock key do
-    old = STORE.get(key).to_s
-    STORE.set(key, old + data)
-    "Amended key #{key} which was #{old.bytesize} bytes with #{data.bytesize} bytes"
+  if STORE.respond_to?(:append)
+    total = STORE.append(key, data)
+    "Amended key #{key} with #{data.bytesize} bytes to be #{total} bytes"
+  else
+    lock key do
+      old = STORE.get(key).to_s
+      STORE.set(key, old + data)
+      "Amended key #{key} which was #{old.bytesize} bytes with #{data.bytesize} bytes"
+    end
   end
 end
 

@@ -1,6 +1,7 @@
 GEM
   remote: https://rubygems.org/
   specs:
+    connection_pool (2.3.0)
     daemons (1.4.1)
     dalli (3.2.3)
     eventmachine (1.2.7)
@@ -10,6 +11,10 @@ GEM
     rack-protection (3.0.3)
       rack
     rake (13.0.6)
+    redis (5.0.5)
+      redis-client (>= 0.9.0)
+    redis-client (0.11.1)
+      connection_pool
     rollbar (3.3.2)
     ruby2_keywords (0.0.5)
     sinatra (3.0.3)
@@ -29,6 +34,7 @@ PLATFORMS
 DEPENDENCIES
   dalli
   rake
+  redis
   rollbar
   sinatra
   thin
