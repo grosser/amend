@@ -7,7 +7,7 @@ GEM
     eventmachine (1.2.7)
     mustermann (3.0.0)
       ruby2_keywords (~> 0.0.1)
-    rack (2.2.4)
+    rack (2.2.6.4)
     rack-protection (3.0.3)
       rack
     rake (13.0.6)
